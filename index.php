@@ -15,7 +15,7 @@ require 'vendor/autoload.php';
 function CurlRequest2($question)
 {
     global $UniqID, $update;
-    $url = "http://sandbox.api.simsimi.com/request.p?key=c55ce39f-d4db-4ad1-8f73-6c694601b35d&lc=ar&ft=1.0&text=" .
+    $url = "http://sandbox.api.simsimi.com/request.p?key=935a036f-488e-4ebf-ba9b-705afc65ad2c=ar&ft=1.0&text=" .
         urlencode($question);
     $curl = curl_init();
     curl_setopt_array($curl, array(
