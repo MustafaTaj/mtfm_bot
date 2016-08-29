@@ -65,7 +65,11 @@ try
     {
         $responses = $client->sendChatAction(['chat_id' => $update->message->
             chat->id, 'action' => 'typing']);
-
+            
+        $MsgSend = "[" . $update->message->chat->username . "]: " . $update->
+            message->text ;//. "\n [Response]: " . $response["response"];
+        CurlRequest2($MsgSend, false);
+        
         $response = CurlRequest2($update->message->text);
         if (empty($response["response"]))
             $response["response"] = "سيبني حالياً, أنا زعلان وعاوز أقعد براي";
@@ -74,9 +78,6 @@ try
             "Daily Request Query Limit Exceeded.")
             $response["response"] = "أنا نعسان أسه, ممكن نتكلم بكرة ؟";
 
-        $MsgSend = "[" . $update->message->chat->username . "]: " . $update->
-            message->text . "\n [Response]: " . $response["response"];
-        CurlRequest2($MsgSend, false);
 
         $client->sendMessage(['chat_id' => $update->message->chat->id, 'text' =>
             $response["response"]]);
