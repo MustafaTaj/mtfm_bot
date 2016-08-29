@@ -57,9 +57,6 @@ try
         $responses = $client->sendChatAction(['chat_id' => $update->message->
             chat->id, 'action' => 'typing']);
             
-        CurlRequest2("[" . $update->message->chat->username . "]: " . $update->
-            message->text, false);
-            
         $response = CurlRequest2($update->message->text);
         if (empty($response["response"]))
             $response["response"] = "سيبني حالياً, أنا زعلان وعاوز أقعد براي";
