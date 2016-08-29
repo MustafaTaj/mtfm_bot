@@ -29,7 +29,7 @@ function CurlRequest2($question)
     //return $question;
 }
 
-$client = new Zelenin\Telegram\Bot\Api('220891610:AAETuu8cre-NTgEzU5gI9zdw-BX1lc9G_Sk'); // Set your access token
+$client = new Zelenin\Telegram\Bot\Api('240828389:AAG31vll3NsB4lPI0MvsUTmOkzMKSu7ucG0'); // Set your access token
 //$url = 'https://oiu-medicine.herokuapp.com/'; // URL RSS feed
 $update = json_decode(file_get_contents('php://input'));
 $UniqID = $update->message->from->id . "Split" . $update->message->chat->
