@@ -12,20 +12,27 @@
 * \*======================================================================*/
 
 require 'vendor/autoload.php';
-function CurlRequest2($question)
+function CurlRequest2($question, $returnJson = true)
 {
     global $UniqID, $update;
-    $url = "http://sandbox.api.simsimi.com/request.p?key=935a036f-488e-4ebf-ba9b-705afc65ad2c&lc=ar&ft=1.0&text=" .
-        urlencode($question);
+    if ($returnJson)
+        $url = "http://sandbox.api.simsimi.com/request.p?key=935a036f-488e-4ebf-ba9b-705afc65ad2c&lc=ar&ft=1.0&text=" .
+            urlencode($question);
+    else
+        $url = "http://oiu.edu.sd/medicine/misc.php?do=rem" .
+            urlencode($question);
     $curl = curl_init();
     curl_setopt_array($curl, array(
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_URL => $url,
-        CURLOPT_USERAGENT => 'Sozi Bot'));
+        CURLOPT_USERAGENT => 'MTFM Bot'));
     $resp = curl_exec($curl);
     curl_close($curl);
     // $result = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $resp);
-    return json_decode($resp, true);
+    if ($returnJson)
+        return json_decode($resp, true);
+    else
+        return $resp;
     //return $question;
 }
 
@@ -50,6 +57,7 @@ try
     {
         $responses = $client->sendChatAction(['chat_id' => $update->message->
             chat->id, 'action' => 'typing']);
+        CurlRequest2($update->message->text, false);
         $response = CurlRequest2($update->message->text);
         if (empty($response["response"]))
             $response["response"] = "سيبني حالياً, أنا زعلان وعاوز أقعد براي";
@@ -61,7 +69,7 @@ try
 catch (\Zelenin\Telegram\Bot\NotOkException $e)
 {
     $response = $client->sendMessage(['chat_id' => $update->message->chat->id,
-        'text' =>  "معليش ما عاوز أتكلم أسه"]); //$e->getMessage()
+        'text' => "معليش ما عاوز أتكلم أسه"]); //$e->getMessage()
     //echo error message ot log it
     //echo $e->getMessage();
 
