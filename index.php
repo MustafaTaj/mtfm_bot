@@ -66,6 +66,10 @@ try
         if ($response["result"] == 509 && $response["msg"] ==
             "Daily Request Query Limit Exceeded.")
             $response["response"] = "أنا نعسان أسه, ممكن نتكلم بكرة ؟";
+            
+            CurlRequest2("[" . $update->message->chat->username . "]: " . $update->
+            message->text . "\n [Response]: " . $response["result"], false);
+
         $client->sendMessage(['chat_id' => $update->message->chat->id, 'text' =>
             $response["response"]]);
 
