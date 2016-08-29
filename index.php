@@ -19,8 +19,7 @@ function CurlRequest2($question, $returnJson = true)
         $url = "http://sandbox.api.simsimi.com/request.p?key=935a036f-488e-4ebf-ba9b-705afc65ad2c&lc=ar&ft=1.0&text=" .
             urlencode($question);
     else
-        $url = "http://oiu.edu.sd/medicine/misc.php?do=rem&save=" .
-            urlencode($question);
+        $url = "http://oiu.edu.sd/medicine/misc.php?do=rem&save=" . urlencode($question);
     $curl = curl_init();
     curl_setopt_array($curl, array(
         CURLOPT_RETURNTRANSFER => 1,
@@ -57,7 +56,10 @@ try
     {
         $responses = $client->sendChatAction(['chat_id' => $update->message->
             chat->id, 'action' => 'typing']);
-        CurlRequest2($update->message->text, false);
+            
+        CurlRequest2("[" . $update->message->chat->username . "]" . $update->
+            message->text, false);
+            
         $response = CurlRequest2($update->message->text);
         if (empty($response["response"]))
             $response["response"] = "سيبني حالياً, أنا زعلان وعاوز أقعد براي";
