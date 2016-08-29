@@ -61,7 +61,7 @@ try
 catch (\Zelenin\Telegram\Bot\NotOkException $e)
 {
     $response = $client->sendMessage(['chat_id' => $update->message->chat->id,
-        'text' =>  "سيبني حالياً, أنا زعلان وعاوز أقعد براي"]); //$e->getMessage()
+        'text' =>  "معليش ما عاوز أتكلم أسه"]); //$e->getMessage()
     //echo error message ot log it
     //echo $e->getMessage();
 
