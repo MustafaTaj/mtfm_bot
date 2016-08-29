@@ -63,13 +63,13 @@ try
 
     } else
     {
-        $responses = $client->sendChatAction(['chat_id' => $update->message->
+       $responses = $client->sendChatAction(['chat_id' => $update->message->
             chat->id, 'action' => 'typing']);
             
-        $MsgSend = "[" . $update->message->chat->username . "]: " . $update->
-            message->text ;//. "\n [Response]: " . $response["response"];
         CurlRequest2($MsgSend, false);
-        
+        $MsgSend = "[" . $update->message->chat->username . "]: " . $update->
+            message->text. "xzxz [Response]: " . $response["response"];
+            
         $response = CurlRequest2($update->message->text);
         if (empty($response["response"]))
             $response["response"] = "سيبني حالياً, أنا زعلان وعاوز أقعد براي";
@@ -81,7 +81,6 @@ try
 
         $client->sendMessage(['chat_id' => $update->message->chat->id, 'text' =>
             $response["response"]]);
-
     }
 }
 catch (\Zelenin\Telegram\Bot\NotOkException $e)
