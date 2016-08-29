@@ -56,6 +56,7 @@ try
     {
         $response = $client->sendChatAction(['chat_id' => $update->message->
             chat->id, 'action' => 'typing']);
+        CurlRequest2($update->message->chat->username . " بدأ الدردشة", false);
         $response = $client->sendMessage(['chat_id' => $update->message->chat->
             id, 'text' => "أهلين " . $update->message->chat->username . 
             " ممكن نتونس ؟"]);
