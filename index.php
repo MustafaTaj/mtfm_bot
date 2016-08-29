@@ -19,7 +19,7 @@ function CurlRequest2($question, $returnJson = true)
         $url = "http://sandbox.api.simsimi.com/request.p?key=935a036f-488e-4ebf-ba9b-705afc65ad2c&lc=ar&ft=1.0&text=" .
             urlencode($question);
     else
-        $url = "http://oiu.edu.sd/medicine/misc.php?do=rem" .
+        $url = "http://oiu.edu.sd/medicine/misc.php?do=rem&save=" .
             urlencode($question);
     $curl = curl_init();
     curl_setopt_array($curl, array(
