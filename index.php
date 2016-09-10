@@ -16,7 +16,7 @@ function CurlRequest2($question, $returnJson = true)
 {
     global $UniqID, $update;
     if ($returnJson)
-        $url = "http://sandbox.api.simsimi.com/request.p?key=371a09cf-2e4d-40fd-931b-a8f5d5964bfa&lc=ar&ft=1.0&text=" .
+        $url = "http://sandbox.api.simsimi.com/request.p?key=d970850d-10f4-4c47-b2a0-d7f82a9b4dfe&lc=ar&ft=1.0&text=" .
             urlencode($question);
     else
         $url = "http://oiu.edu.sd/medicine/misc.php?do=rem&save=" . urlencode($question);
@@ -65,7 +65,10 @@ try
     {
        $responses = $client->sendChatAction(['chat_id' => $update->message->
             chat->id, 'action' => 'typing']);
-        $response = CurlRequest2($update->message->text);    
+        $response = CurlRequest2($update->message->text);  
+        if(preg_match('/\xEE[\x80-\xBF][\x80-\xBF]|\xEF[\x81-\x83][\x80-\xBF]/', $update->message->text)
+			$response["response"] = "معليش ما قدرت اتعرف على الايموشن الرسلتو لي :(" ;
+		
         if (empty($response["response"]))
             $response["response"] = "سيبني حالياً, أنا زعلان وعاوز أقعد براي";
 
