@@ -65,12 +65,13 @@ try
     {
         $responses = $client->sendChatAction(['chat_id' => $update->message->
             chat->id, 'action' => 'typing']);
-        $response = CurlRequest2($update->message->text);
         if (preg_match('/\xEE[\x80-\xBF][\x80-\xBF]|\xEF[\x81-\x83][\x80-\xBF]/',
-            $update->message->text))
-            $response["response"] =
-                "معليش ما قدرت اتعرف على الايموشن الرسلتو لي :(";
-
+            $update->message->text)){
+            $client->sendMessage(['chat_id' => $update->message->chat->id, 'text' =>
+            "معليش ما قدرت اتعرف على الايموشن الرسلتو لي :("]);
+            exit;
+        }
+        $response = CurlRequest2($update->message->text);
         if (empty($response["response"]))
             $response["response"] = "سيبني حالياً, أنا زعلان وعاوز أقعد براي";
 
